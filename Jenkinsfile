@@ -1,24 +1,23 @@
 pipeline {
 
   agent any
-  
   stages {
     stage('Build') {
       steps {
-            bat 'mvn -B -U -e -V clean -DskipTests package'
+            bat 'mvn -B -U -e -V clean  -DskipTests package'
       }
     }
 
     stage('Test') {
       steps {
-          echo "************** Muint test cases execution***********************"
+          echo "***** Munit Test Cases Execution *****"
       }
     }
 
-     stage('Deployment') {
-      
+    stage('Deployment') {
+     
       steps {
-            bat 'mvn -U -V -e -B -DskipTests deploy -Pdev -DmuleDeploy'
+            bat 'mvn -U -V -e -B -DskipTests -Pdev deploy -DmuleDeploy'
       }
     }
   }
